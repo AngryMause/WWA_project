@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "403424039770",
+    "project_id": "wwa-project-12bfb",
+    "storage_bucket": "wwa-project-12bfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403424039770:android:342fc47bb4879b0b69d963",
+        "android_client_info": {
+          "package_name": "com.angrymause.wwa_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403424039770-rjp8gbpgra9sbod2el6c086j1cj74b4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA50WBtHroot0HbcPiWuL-Fb5gGzEC0ft4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403424039770-rjp8gbpgra9sbod2el6c086j1cj74b4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
