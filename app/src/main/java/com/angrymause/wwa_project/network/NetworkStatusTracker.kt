@@ -47,7 +47,6 @@ class NetworkStatusTracker(context: Context) {
         awaitClose {
             connectiveManager.unregisterNetworkCallback(networkStatusCallback)
         }
-
     }
         .debounce(DEBOUNCE)
         .distinctUntilChanged()

@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.angrymause.wwa_project.data.remotedata.CheckRemote
 import com.angrymause.wwa_project.data.remotedata.RealTimeDataBaseRepository
 import kotlinx.coroutines.launch
 
 
-class SplashViewModel() : ViewModel() {
+class SplashViewModel : ViewModel() {
     private val fire: RealTimeDataBaseRepository by lazy { RealTimeDataBaseRepository() }
     private val _resp = MutableLiveData<Boolean>()
     val resp: LiveData<Boolean> get() = _resp
-
 
     init {
         viewModelScope.launch {
@@ -20,8 +20,13 @@ class SplashViewModel() : ViewModel() {
         }
     }
 
-
     private suspend fun getRemoteData() {
-        _resp.value = fire.getRemoteData().isTrue
+        fire.getRemoteConfig().collect { remoteConfig ->
+            when (remoteConfig) {
+                is CheckRemote.RemoteConfig -> {
+                    _resp.postValue(remoteConfig.isTru)
+                }
+            }
+        }
     }
 }

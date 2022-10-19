@@ -5,10 +5,20 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.angrymause.wwa_project.databinding.FragmentWebviewBinding
 import com.angrymause.wwa_project.ui.fragment.BaseFragment
+import kotlinx.coroutines.launch
 
 class WebViewFragment : BaseFragment<FragmentWebviewBinding>(FragmentWebviewBinding::inflate) {
+    companion object {
+        fun newInstance(): WebViewFragment {
+            return WebViewFragment()
+        }
+    }
+
+    private val webViewViewMode: WebViewViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -18,9 +28,17 @@ class WebViewFragment : BaseFragment<FragmentWebviewBinding>(FragmentWebviewBind
     @SuppressLint("SetJavaScriptEnabled")
     private fun setUpWebView() {
         binding.myWebView.settings.javaScriptEnabled = true
-        binding.myWebView.loadUrl("https://www.pinterest.com/search/pins/?q=adnroid&rs=typed")
+        setUpWebViewUrl()
         binding.myWebView.webViewClient = WebViewClient()
         govBack()
+    }
+
+    private fun setUpWebViewUrl() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            webViewViewMode.resp.observe(viewLifecycleOwner) { url ->
+                binding.myWebView.loadUrl(url)
+            }
+        }
     }
 
 
@@ -32,7 +50,6 @@ class WebViewFragment : BaseFragment<FragmentWebviewBinding>(FragmentWebviewBind
                         binding.myWebView.goBack()
                     } else {
                         isEnabled = false
-                        activity?.finish()
                     }
                 }
             })
