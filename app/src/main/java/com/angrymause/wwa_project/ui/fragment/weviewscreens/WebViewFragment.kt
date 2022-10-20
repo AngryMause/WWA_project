@@ -41,7 +41,6 @@ class WebViewFragment : BaseFragment<FragmentWebviewBinding>(FragmentWebviewBind
         }
     }
 
-
     private fun govBack() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
             object : OnBackPressedCallback(true) {

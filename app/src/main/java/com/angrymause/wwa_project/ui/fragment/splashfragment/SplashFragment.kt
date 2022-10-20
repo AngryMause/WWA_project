@@ -21,6 +21,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
     private val splashViewModel: SplashViewModel by viewModels()
     private val networkStatusTracker by lazy { NetworkStatusTracker(requireContext()) }
 
+    companion object {
+        fun newInstance(): SplashFragment {
+            return SplashFragment()
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,9 +42,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                     is NetworkStatus.Available -> {
                         try {
                             splashViewModel.resp.observe(viewLifecycleOwner) { isTrue ->
-                                if (!isTrue) {
-                                    replaceFragment(GameFragment.newInstance())
-                                } else replaceFragment(WebViewFragment.newInstance())
+                                if (isTrue) {
+                                    replaceFragment(WebViewFragment.newInstance())
+                                } else replaceFragment(GameFragment.newInstance())
                             }
                         } catch (e: IllegalStateException) {
                             Log.d("SplashFrag ", "exception: ${e.message} ")

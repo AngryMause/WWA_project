@@ -40,7 +40,8 @@ class RealTimeDataBaseRepository {
             .distinctUntilChanged()
     }
 
-
+    //Created a new variable, or can added child property to remote config
+    //and use childEventListener
     suspend fun getRemoteUrl(): String {
         databaseRef = database.getReference(REMOTE_URL_CONFIG)
         val url = databaseRef.get().await().getValue(String::class.java)

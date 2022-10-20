@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.angrymause.wwa_project.R
 import com.angrymause.wwa_project.databinding.ActivityMainBinding
-import com.angrymause.wwa_project.ui.fragment.gamescreens.GameFragment
+import com.angrymause.wwa_project.ui.fragment.splashfragment.SplashFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        replaceFragment(GameFragment.newInstance())
+        replaceFragment(SplashFragment.newInstance())
     }
 
 

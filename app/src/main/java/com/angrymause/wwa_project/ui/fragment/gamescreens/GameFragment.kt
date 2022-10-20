@@ -2,7 +2,6 @@ package com.angrymause.wwa_project.ui.fragment.gamescreens
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -29,7 +28,11 @@ class GameFragment : BaseFragment<FragmentGameBinding>(FragmentGameBinding::infl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpDataArrays()
+        startGame()
+    }
 
+    private fun setUpDataArrays() {
         images.addAll(images)
         images.shuffle()
         buttons = listOf(binding.textView1,
@@ -41,6 +44,9 @@ class GameFragment : BaseFragment<FragmentGameBinding>(FragmentGameBinding::infl
         cards = buttons.indices.map { index ->
             GameModel(images[index])
         }
+    }
+
+    private fun startGame() {
         val timer =
             object : CountDownTimer(3000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
@@ -52,22 +58,21 @@ class GameFragment : BaseFragment<FragmentGameBinding>(FragmentGameBinding::infl
                 }
                 override fun onFinish() {
                     binding.refreshTv.isVisible = false
-                    setUp()
+                    onCardClicked()
                 }
             }
         timer.start()
-
-
     }
 
-    private fun setUp() {
+    private fun onCardClicked() {
         buttons.forEachIndexed { index, imageButton ->
             imageButton.setOnClickListener {
                 updateModels(index)
                 updateViews()
             }
+            updateViews()
         }
-        updateViews()
+
 
     }
 
@@ -110,24 +115,10 @@ class GameFragment : BaseFragment<FragmentGameBinding>(FragmentGameBinding::infl
             if (cards[position1].identifier == cards[position2].identifier) {
                 cards[position1].isMatched = true
                 cards[position2].isMatched = true
-                Log.d("ArrayCards", "${cards.size}")
-
             }
         }
+
     }
-//
-//    private fun showAlert() {
-//        AlertDialog.Builder(requireContext())
-//            .setTitle("You win")
-//            .setPositiveButton("Ok"
-//            ) { _, _ ->
-//                setUp()
-//            }
-//            .setNegativeButton("Dismiss") { _, _ ->
-//                activity?.finish()
-//            }
-//            .show()
-//    }
 }
 
 

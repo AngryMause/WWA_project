@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 private const val DEBOUNCE = 500L
-
 class NetworkStatusTracker(context: Context) {
     private val connectiveManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

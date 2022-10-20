@@ -1,6 +1,5 @@
 package com.angrymause.wwa_project.ui.fragment.weviewscreens
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,7 +15,6 @@ class WebViewViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            Log.d("DataBaseRepository", "webview ${fire.getRemoteUrl()}")
             getUrl()
         }
     }

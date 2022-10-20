@@ -4,13 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group_button"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:constraint_referenced_ids="text_view1,text_view2,text_view3,
-        text_view4,text_view5,text_view6" />
-
     <TextView
         android:id="@+id/refresh_tv"
         android:layout_width="40dp"
@@ -67,7 +60,6 @@
         android:id="@+id/text_view5"
         android:layout_width="100dp"
         android:layout_height="100dp"
-
         android:background="@drawable/ic_android"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/text_view6"
